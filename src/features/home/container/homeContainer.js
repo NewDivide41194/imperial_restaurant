@@ -1,10 +1,11 @@
 import React from "react";
 import FoodContainer from "../../food/container/foodContainer";
+import Banner from "../../app/banner/banner";
 
 const Home = () => {
   return (
     <div>
-      Home
+      <Banner/>
       <FoodContainer/>
     </div>
   );

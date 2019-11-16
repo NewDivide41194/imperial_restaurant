@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withMedia } from "react-media-query-hoc";
 
-import Logo from "../../assets/icons/logo/logo.jpg";
+import Logo from "../../assets/icons/logo/logo.png";
 import * as RoutePath from "../../config/routeConfig";
 import { fsc } from "../../assets/fontControlHelper";
 import MyLink from "../../tools/myLink";
@@ -26,7 +26,7 @@ const Navbar = props => {
         document.body.scrollTop > 30 ||
         document.documentElement.scrollTop > 30
       ) {
-        MyNav.style.background = "black";
+        MyNav.style.background = "green";
         MyNav.style.position = "fixed";
         MyNav.style.top = 0;        
         navTitle.style.visibility="hidden"
@@ -40,13 +40,13 @@ const Navbar = props => {
   });
 
   return (
-    <div className="sticky-top bg-dark position-fixed w-100">      
+    <div className="sticky-top position-fixed w-100">      
         <div
           className="d-flex flex-row flex-wrap justify-content-between px-3 border-bottom py-2 text-light"
           style={{
             fontSize: fsc(media, 13),
             borderBottom: "1px solid light",
-            background: "rgba(255, 255, 255, 0.2)",
+            background: "rgba(0, 0, 0, 0.3)",
           }}
           id="NavTitle"
         >
@@ -79,7 +79,7 @@ const Navbar = props => {
         </div>
       <div
         id="NavbarContainer"
-        className="d-flex flex-row w-100 justify-content-between py-2 px-3"
+        className="d-flex flex-row w-100 justify-content-between py-2 px-5"
         style={{
           zIndex: 2,
           opacity: MenuClick ? 1 : 0.9,
@@ -91,7 +91,7 @@ const Navbar = props => {
         </div>
         {media.mobile && MenuClick === false ? (
           <span style={{ fontSize: 25, color: Colors.textWhite }}>
-            <i className="fa fa-list pt-3" onClick={handleMenuClick} />
+            <i className="fa fa-bars pt-4" onClick={handleMenuClick} />
           </span>
         ) : media.mobile && MenuClick === true ? null : (
           <div className="my-auto" style={{ fontSize: fsc(media, 15) }}>

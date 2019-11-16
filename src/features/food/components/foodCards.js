@@ -11,84 +11,51 @@ const FoodCards = props => {
 
   const _handleHover = e => {
     setHover(!hover);
+    const ID=document.getElementById(e.target.id)
+
     if (hover === true) {
-      document.getElementById(e.target.id).style.transform = "scale(1)";
+      ID.style.transform = "scale(1)";
     } else {
-      document.getElementById(e.target.id).style.transform = "scale(1.2)";
+      ID.style.transform = "scale(1.2)";
     }
   };
-  return (
-    <div className="container text-left py-3">
-      <div className="d-flex flex-column align-items-center">
-        <span
-          style={{
-            fontSize: fsc(media, 35),
-            fontFamily: Font.bodyTitle,
-            fontWeight: "bold"
-          }}
-        ></span>
-        {/* file seprate */}
-      </div>
 
-      <div className="d-flex flex-row flex-wrap">
+  return (
+    <div className="container py-3 ">
+      
+      <div className="row">
         {Data.map((v, k) => (
-          <div className="col-lg-4 col-md-4 col-sm-6 p-3" key={k}>
+          <div className='col-lg-4 col-md-6 p-4' key={k}>            
+          <div className="card shadow" style={{ width: '100%',height:media.mobile?'100%':300 }}>
             <div
-              className="d-flex flex-column bg-light w-100"
-              style={{ transition: "1s" }}
+              style={{
+                overflow: "hidden",
+                height: media.mobile ? "100%" : "70%"
+              }}
             >
-              <div
-                className="w-100"
+              <img
+                src={process.env.PUBLIC_URL + `${v.image}`}
+                id={v.food_id}
+                onMouseLeave={id => _handleHover(id)}
+                onMouseOver={id => _handleHover(id)}
+                className="card-img-top"
                 style={{
-                  overflow: "hidden",
-                  height: media.mobile
-                    ? "140px"
-                    : media.tablet
-                    ? "130px"
-                    : "190px"
+                  transition: ".5s",
+                  filter:'contrast(120%)',
+                  
                 }}
-              >
-                <img
-                  src={process.env.PUBLIC_URL + `${v.image}`}
-                  id={v.food_id}
-                  onMouseLeave={id => _handleHover(id)}
-                  onMouseOver={id => _handleHover(id)}
-                  className="w-100"
-                  style={{
-                    transition: "1s"
-                  }}
-                  alt="rooms"
-                />
-              </div>
-              <div className="d-flex flex-column px-3 py-3">
-                <span
-                  style={{
-                    color: Colors.textBlack,
-                    fontSize: fsc(media, 20),
-                    fontWeight: "bold"
-                  }}
-                >
-                  {v.food_name}
-                </span>
-                <span
-                  style={{
-                    color: Colors.textBlack,
-                    fontSize: fsc(media, 14)
-                  }}
-                >
-                  {v.size}
-                </span>
-                <span
-                  style={{
-                    color: Colors.textBlack,
-                    fontSize: fsc(media, 30),
-                    fontWeight: "bold"
-                  }}
-                >
-                  $ {v.price}
-                </span>
+                alt="rooms"
+              />
+            </div>
+            <div className="card-body">
+              <h5 className="card-title">{v.food_name}</h5>
+              <div className="card-text" >
+                <span className='w-100'>{v.food_name}</span><br/>
+                <span>{v.size}</span><br/>
+                <span style={{color:Colors.textBlack,fontWeight:'bold', fontSize:fsc(media,25)}}>{v.price} ks</span>
               </div>
             </div>
+          </div>
           </div>
         ))}
       </div>
